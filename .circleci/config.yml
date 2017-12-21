@@ -24,7 +24,8 @@ workflows:
     jobs:
       - chromestore:
           filters:
-             branches:
-               ignore: /.*/
-             tags:
-               only: /^[0-9]+\.[0-9]+$/
+            # published only when tag X.Y is pushed
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^[0-9]+\.[0-9]+$/
