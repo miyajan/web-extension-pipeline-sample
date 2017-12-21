@@ -1,0 +1,30 @@
+version: 2
+jobs:
+  chromestore:
+    docker:
+      - image: circleci/node:6.12.2
+    steps:
+      - checkout
+      - restore_cache:
+        keys:
+          - v1-npm-deps-{{ checksum "package.json" }}
+          - v1-npm-deps
+      - run: npm install
+      - save_cache:
+        key: v1-npm-deps-{{ checksum "package.json" }}
+        paths:
+          - node_modules
+      - run: npm run package
+      - run: npm run chromestore
+      - store_artifacts:
+        path: borderify.zip
+workflows:
+  version: 2
+  build:
+    jobs:
+      - chromestore:
+          filters:
+             branches:
+               ignore: /.*/
+             tags:
+               only: /^[0-9]+\.[0-9]+$/

@@ -1,0 +1,30 @@
+{
+  "name": "web-extension-pipeline-sample",
+  "version": "1.0.0",
+  "description": "Delivery Pipeline for Web Extension",
+  "scripts": {
+    "package": "nodezip -c borderify.zip manifest.json borderify.js icons",
+    "chromestore": "export WEBSTORE_TOKEN=$(chrome-webstore-manager refresh_token --client_id ${CHROME_CLIENT_ID} --client_secret ${CHROME_CLIENT_SECRET} --refresh_token ${CHROME_REFRESH_TOKEN}) && npm run chromestore:update && npm run chromestore:publish",
+    "chromestore:update": "chrome-webstore-manager update facedhdnkeckbpojclkppfipkdocpeni borderify.zip",
+    "chromestore:publish": "chrome-webstore-manager publish facedhdnkeckbpojclkppfipkdocpeni"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/miyajan/web-extension-pipeline-sample.git"
+  },
+  "keywords": [
+    "WebExtensions",
+    "chrome",
+    "firefox"
+  ],
+  "author": "miyajan <miyajan777@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/miyajan/web-extension-pipeline-sample/issues"
+  },
+  "homepage": "https://github.com/miyajan/web-extension-pipeline-sample",
+  "devDependencies": {
+    "chrome-webstore-manager": "^0.4.1",
+    "node-zip": "^1.1.1"
+  }
+}
