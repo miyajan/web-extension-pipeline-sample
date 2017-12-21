@@ -1,6 +1,5 @@
 {
   "name": "web-extension-pipeline-sample",
-  "version": "1.0.0",
   "description": "Delivery Pipeline for Web Extension",
   "scripts": {
     "package": "nodezip -c borderify.zip manifest.json borderify.js icons",
